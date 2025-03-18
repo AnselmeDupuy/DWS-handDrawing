@@ -6,8 +6,32 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <app-root></app-root>
+<div class="topbar">
+  <div class="logo-placeholder"></div>
+  <h1>Exceptional engravings for a unique imprint</h1>
+  <button class="validate-btn">✔</button>
+</div>
+<div class="sidebar" id="sidebar">
+  <ul>
+    <li><a href="#"><i class="fa-solid fa-up-down-left-right"></i><span>Desplace</span></a></li>
+    <li><a href="#"><i class="fa-solid fa-pencil"></i><span>Pencil</span></a></li>
+    <li><a href="#"><i class="fa-solid fa-eraser"></i><span>Erase</span></a></li>
+    <li><a href="#"><i class="fa-solid fa-trash"></i><span>Delete All</span></a></li>
+  </ul>
+</div>
+<div class="content">
+  <canvas id="drawingCanvas"></canvas>
+</div>
+    <script src="main.js"></script>
 </body>
+<footer>
+  <div class="bottom-buttons">
+    <button class="btn"><i class="fas fa-undo-alt"></i></button>
+    <button class="btn"><i class="fas fa-redo-alt"></i></button>
+  </div>
+</footer>
 </html>
