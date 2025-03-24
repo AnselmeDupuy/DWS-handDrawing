@@ -48,8 +48,8 @@ export class FreehandDrawingComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     const canvas = this.canvasRef.nativeElement;
     this.ctx = canvas.getContext('2d')!;
-    canvas.width = 500;
-    canvas.height = 400;
+    canvas.width = 1600;
+    canvas.height = 700;
     this.initDrawing();
   }
 
