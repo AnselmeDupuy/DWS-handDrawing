@@ -10,28 +10,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="topbar">
-  <div class="logo-placeholder"></div>
-  <h1>Exceptional engravings for a unique imprint</h1>
-  <button class="validate-btn">✔</button>
-</div>
-<div class="sidebar" id="sidebar">
-  <ul>
-    <li><a href="#"><i class="fa-solid fa-pencil"></i><span>Pencil</span></a></li>
-    <li><a href="#"><i class="fa-solid fa-eraser"></i><span>Erase</span></a></li>
-    <li><a href="#"><i class="fa-solid fa-trash"></i><span>Delete All</span></a></li>
-  </ul>
-</div>
+<app-top-bar></app-top-bar>
+<app-side-bar></app-side-bar>
 <div class="content">
   <app-root></app-root>
   <canvas id="drawingCanvas"></canvas>
 </div>
     <script src="main.js"></script>
 </body>
-<footer>
-  <div class="bottom-buttons">
-    <button class="btn"><i class="fas fa-undo-alt"></i></button>
-    <button class="btn"><i class="fas fa-redo-alt"></i></button>
-  </div>
-</footer>
+<app-bottom-btn></app-bottom-btn>
 </html>

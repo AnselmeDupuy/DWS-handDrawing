@@ -1,21 +1,16 @@
-/*import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-
-@Component({
-  selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
-})
-export class AppComponent {
-  title = 'DWS-handWriting';
-}*/
-
 import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { BottomBtnComponent } from '../bottom-btn/bottom-btn.component';
+import { SideBarComponent } from '../side-bar/side-bar.component';
+import { TopBarComponent } from '../top-bar/top-bar.component';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [TopBarComponent, SideBarComponent, BottomBtnComponent],
   template: `
+  <app-top-bar></app-top-bar>
+  <app-side-bar></app-side-bar>
+  <app-bottom-btn></app-bottom-btn>
     <div class="drawing-container">
       <canvas #canvas></canvas>
       <button (click)="clearCanvas()">Effacer</button>
