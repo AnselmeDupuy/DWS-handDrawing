@@ -114,18 +114,13 @@ body {
 
 
 .content {
-  margin-left: 80px;
-  padding: 20px;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 canvas {
   background: #f0f0f0;
-  /* width: 90%;
-  height: 80%;
-  border: 2px solid #ccc;
-  border-radius: 10px; */
-  top: 100px;
-  margin-top: 100px;
+  margin-top: 5%;
 }
 
 .bottom-buttons {
