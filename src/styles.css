@@ -7,7 +7,6 @@ body {
   overflow: hidden;
 }
 
-/* Barre du haut */
 .topbar {
   display: flex;
   justify-content: space-between;
@@ -58,7 +57,11 @@ body {
   overflow: hidden;
   transition: width 0.3s ease-in-out;
   white-space: nowrap;
+  z-index: 1000;
+}
 
+.sidebar:hover {
+  width: 101px;
 }
 
 .sidebar ul {
@@ -74,7 +77,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  transition: all 0.2s ease;
+  border-radius: 5px;
 }
 
 .sidebar ul li a {
@@ -84,19 +88,13 @@ body {
   flex-direction: column;
   align-items: center;
   font-size: 14px;
+  transition: color 0.2s ease;
 }
 
 .sidebar ul li a i {
   font-size: 24px;
   margin-bottom: 5px;
-}
-
-.sidebar ul li:hover {
-  background-color: #555;
-}
-
-.sidebar.open {
-  width: 101px;
+  transition: transform 0.2s ease;
 }
 
 .sidebar ul li a i,
@@ -111,6 +109,22 @@ body {
   opacity: 1;
   transform: scale(1);
 }
+
+.sidebar ul li:hover {
+  background-color: #c0b78e;
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.sidebar ul li:hover a i {
+  transform: scale(1.2);
+}
+
+.sidebar ul li:hover a {
+  color: #333;
+}
+
+
 
 
 .content {
