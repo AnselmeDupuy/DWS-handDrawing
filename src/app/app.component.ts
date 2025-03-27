@@ -37,7 +37,7 @@ export class FreehandDrawingComponent implements AfterViewInit, OnDestroy {
   @ViewChild('canvas', { static: false }) canvasRef!: ElementRef<HTMLCanvasElement>;
   private ctx!: CanvasRenderingContext2D;
   private drawing = false;
-  public paths: { x: number; y: number }[][] = [];
+  public paths: { points: { x: number; y: number }[]; thickness: number }[] = [];
   public currentPath: { x: number; y: number }[] = [];
   public pencilThickness: number = 1; 
 
@@ -93,7 +93,7 @@ export class FreehandDrawingComponent implements AfterViewInit, OnDestroy {
 
     this.paths.forEach(path => {
       this.ctx.beginPath();
-      path.forEach((point, index) => {
+      path.points.forEach((point, index) => {
         if (index === 0) {
           this.ctx.moveTo(point.x, point.y);
         } else {
@@ -111,7 +111,7 @@ export class FreehandDrawingComponent implements AfterViewInit, OnDestroy {
     this.ctx.lineWidth = this.pencilThickness;
     console.log('Pencil thickness:', this.pencilThickness);
     this.ctx.moveTo(event.offsetX, event.offsetY); 
-    this.currentPath.push({ x: event.offsetX, y: event.offsetY });
+    this.currentPath.push({ x: event.offsetX, y: event.offsetY});
   }
 
   private draw(event: MouseEvent): void {
@@ -129,12 +129,12 @@ export class FreehandDrawingComponent implements AfterViewInit, OnDestroy {
 
     this.ctx.lineTo(event.offsetX, event.offsetY);
     this.ctx.stroke();
-    this.currentPath.push({ x: event.offsetX, y: event.offsetY });
+    this.currentPath.push({ x: event.offsetX, y: event.offsetY});
   }
 
   private stopDrawing(): void {
     if (this.currentPath.length > 0) {
-      this.paths.push([...this.currentPath]);
+      this.paths.push({ points: [...this.currentPath], thickness: this.pencilThickness });
     }
     this.drawing = false;
   }

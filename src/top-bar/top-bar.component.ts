@@ -8,11 +8,13 @@ import { Component, Input } from '@angular/core';
   styleUrl: './top-bar.component.css'
 })
 export class TopBarComponent {
-  @Input() paths: { x: number; y: number }[][] = [];
+  // @Input() paths: { x: number; y: number,  }[][] = [];
+  @Input() paths: { points: { x: number; y: number }[]; thickness: number }[] = [];
+
 
     exportToSVG(): void {
     let svgPaths = this.paths.map(path =>
-      `<path d="M${path.map(p => `${p.x},${p.y}`).join(' L ')}" stroke="black" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`
+      `<path d="M${path.points.map(p => `${p.x},${p.y}`).join(' L ')}" stroke="black" fill="none" stroke-width="${path.thickness || 1}" stroke-linecap="round" stroke-linejoin="round"/>`
     ).join('');
 
     const svg = `<svg width="500" height="400" xmlns="http://www.w3.org/2000/svg">${svgPaths}</svg>`;
