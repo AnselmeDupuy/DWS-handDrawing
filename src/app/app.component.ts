@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
   imports: [TopBarComponent, SideBarComponent, BottomBtnComponent],
   template: `
     <app-top-bar [paths]="paths"></app-top-bar>
-    <app-side-bar></app-side-bar>
+    <app-side-bar (changeThicknessEvent)="setThicknessSlider()"></app-side-bar>
     <app-bottom-btn (undoEvent)="undoLastStroke()"></app-bottom-btn>
     <div class="drawing-container">
       <canvas #canvas></canvas>
@@ -39,6 +39,7 @@ export class FreehandDrawingComponent implements AfterViewInit, OnDestroy {
   private drawing = false;
   public paths: { x: number; y: number }[][] = [];
   public currentPath: { x: number; y: number }[] = [];
+  public pencilThickness: number = 1; 
 
   private toolSub!: Subscription;
   private currentTool: string = 'pencil';
@@ -107,7 +108,9 @@ export class FreehandDrawingComponent implements AfterViewInit, OnDestroy {
     this.drawing = true;
     this.currentPath = [];
     this.ctx.beginPath();
-    this.ctx.moveTo(event.offsetX, event.offsetY);
+    this.ctx.lineWidth = this.pencilThickness;
+    console.log('Pencil thickness:', this.pencilThickness);
+    this.ctx.moveTo(event.offsetX, event.offsetY); 
     this.currentPath.push({ x: event.offsetX, y: event.offsetY });
   }
 
@@ -116,11 +119,11 @@ export class FreehandDrawingComponent implements AfterViewInit, OnDestroy {
 
     if (this.currentTool === 'eraser') {
       this.ctx.strokeStyle = '#f0f0f0';
-      this.ctx.lineWidth = 20;
+      this.ctx.lineWidth = this.pencilThickness * 2;
       this.canvasRef.nativeElement.style.cursor = 'cell'; 
     } else {
       this.ctx.strokeStyle = 'black';
-      this.ctx.lineWidth = 2;
+      this.ctx.lineWidth = this.pencilThickness;
       this.canvasRef.nativeElement.style.cursor = 'crosshair';
     }
 
@@ -134,6 +137,14 @@ export class FreehandDrawingComponent implements AfterViewInit, OnDestroy {
       this.paths.push([...this.currentPath]);
     }
     this.drawing = false;
+  }
+
+  setThicknessSlider() {
+    const thicknessSlider = document.getElementById('pencilThickness') as HTMLInputElement;
+    thicknessSlider.addEventListener('input', (event) => {
+      console.log('Pencil thickness:', thicknessSlider.value);
+      this.pencilThickness = Number(thicknessSlider.value);
+    });
   }
 
   ngOnDestroy(): void {

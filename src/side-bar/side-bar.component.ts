@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { DrawingService } from '../services/drawing.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { DrawingService } from '../services/drawing.service';
   templateUrl: './side-bar.component.html'
 })
 export class SideBarComponent {
+  @Output() changeThicknessEvent = new EventEmitter<void>();
   constructor(private drawingService: DrawingService) {}
 
   activateTool(tool: string) {
@@ -16,4 +17,9 @@ export class SideBarComponent {
   clearCanvas() {
     this.drawingService.setTool('clear');
   }
+
+  changeThickness() {
+    this.changeThicknessEvent.emit();
+  }
+
 }

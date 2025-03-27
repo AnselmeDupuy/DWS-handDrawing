@@ -1,5 +1,9 @@
 <div class="sidebar">
     <ul>
+        <li>
+            <label for="pencilThickness">Thickness:</label>
+            <input (mousemove)="changeThickness()" type="range" id="pencilThickness" min="1" max="10" value="1" />
+          </li>
         <li><a href="#" (click)="activateTool('pencil')"><i class="fa-solid fa-pencil"></i><span>Pencil</span></a></li>
         <li><a href="#" (click)="activateTool('eraser')"><i class="fa-solid fa-eraser"></i><span>Erase</span></a></li>
         <li><a href="#" (click)="clearCanvas()"><i class="fa-solid fa-trash"></i><span>Delete</span></a></li>
